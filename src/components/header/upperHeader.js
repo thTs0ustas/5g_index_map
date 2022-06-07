@@ -1,4 +1,10 @@
-import { Box, Button, List, ListItemIcon, useMediaQuery } from '@mui/material';
+import {
+  Box,
+  Button,
+  List,
+  ListItemIcon,
+  // useMediaQuery
+} from '@mui/material';
 import PropTypes from 'prop-types';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import TwitterIcon from '@mui/icons-material/Twitter';
@@ -7,13 +13,13 @@ import PersonSharpIcon from '@mui/icons-material/PersonSharp';
 import { styles } from './styles';
 
 const UpperHeader = ({ show }) => {
-  const w1200 = useMediaQuery('(min-width:1200px)');
-  const w992 = useMediaQuery('(min-width:992px)');
+  // const w1200 = useMediaQuery('(min-width:1200px)');
+  // const w992 = useMediaQuery('(min-width:992px)');
 
   return (
     show && (
       <Box sx={styles.container}>
-        <Box sx={styles.box(w1200, w992)}>
+        <Box sx={styles.box}>
           <List>
             <ListItemIcon sx={styles.listItem}>
               <LinkedInIcon />

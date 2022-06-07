@@ -1,11 +1,11 @@
 const styles = {
   container: { bgcolor: '#EAB200', height: '64px', display: 'flex', alignItems: 'center', justifyContent: 'center' },
-  box: (w1200, w992) => ({
+  box: {
     display: 'flex',
     justifyContent: 'space-between',
     padding: '0 15px',
-    width: w1200 ? '1170px' : w992 ? '970px' : '750px',
-  }),
+    width: '77%',
+  },
   button: {
     width: '150px',
     color: '#fff',

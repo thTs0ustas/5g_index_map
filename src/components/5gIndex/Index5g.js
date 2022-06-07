@@ -3,7 +3,7 @@ import { Box, Breadcrumbs, Grid, Typography } from '@mui/material';
 const Index5g = () => {
   return (
     <Box sx={{ width: '100%', borderTop: '2px solid #21215D', borderBottom: '2px solid #21215D' }}>
-      <Grid container sx={{ width: '90%', margin: '0 auto' }}>
+      <Grid container sx={{ width: '77%', margin: '0 auto' }}>
         <Grid item xs={12} sm={12} md={6} sx={{ padding: '30px 0' }}>
           <Typography
             variant="h6"

@@ -1,5 +1,5 @@
 import { Box, createTheme, ThemeProvider } from '@mui/material';
-import { BottomHeader, Footer, Index5g, MainBar, UpperHeader } from './components';
+import { BottomHeader, Footer, Index5g, Main, MainBar, UpperHeader } from './components';
 import RalewayWoff2 from './theme/Raleway-VariableFont_wght.ttf';
 
 const theme = createTheme({
@@ -47,6 +47,7 @@ function App() {
       </Box>
       <Box as="main">
         <MainBar />
+        <Main />
       </Box>
       <Footer />
     </ThemeProvider>
