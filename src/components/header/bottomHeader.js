@@ -12,7 +12,7 @@ import {
   // useMediaQuery,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import AdbIcon from '@mui/icons-material/Adb';
+import SearchIcon from '@mui/icons-material/Search';
 
 const pages = ['ABOUT', 'PRODUCTS & SERVICES', 'PROGNOSIS', 'NEWS', 'KNOWLEDGE CENTER', 'CONTACT'];
 
@@ -30,12 +30,12 @@ const BottomHeader = () => {
   };
 
   return (
-    <AppBar position="static" sx={{ bgcolor: '#fff' }}>
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
-          <Box as="img" src={'INCITES_SA_logo.png'} sx={{ width: 175 }} />
+    <AppBar position="static" sx={{ bgcolor: '#fff', boxShadow: 'none' }}>
+      <Container maxWidth="lg">
+        <Toolbar disableGutters sx={{ justifyContent: 'space-between', alignItems: { xs: 'start', md: 'center' } }}>
+          <Box as="img" src={'INCITES_SA_logo.png'} sx={{ width: 175, margin: '15px 0' }} />
 
-          <Box sx={{ justifyContent: 'flex-end', display: { xs: 'flex', md: 'none' } }}>
+          <Box sx={{ justifyContent: 'flex-end', margin: '15px 0', display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -43,8 +43,9 @@ const BottomHeader = () => {
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
               color="inherit"
+              sx={{ color: '#21215D', fontSize: '2rem' }}
             >
-              <MenuIcon />
+              <MenuIcon fontSize="16px" />
             </IconButton>
             <Menu
               id="menu-appbar"
@@ -71,19 +72,29 @@ const BottomHeader = () => {
               ))}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
 
-          <Box sx={{ flexGrow: 1, justifyContent: 'end', display: { xs: 'none', md: 'flex' } }}>
+          <Box
+            sx={{
+              flexGrow: 1,
+              justifyContent: 'end',
+              alignItems: 'center',
+              display: { xs: 'none', md: 'flex' },
+              width: { md: '70%', lg: '80%' },
+            }}
+          >
             {pages.map((page) => (
               <Button
                 key={page}
                 onClick={handleCloseNavMenu}
                 sx={{
-                  my: 2,
                   color: '#333',
                   display: 'block',
+                  borderRadius: 0,
+                  boxSizing: 'content-box',
+                  fontSize: { md: '13px', lg: '16px' },
                   '&:hover': {
-                    border: '2px solid #yellow',
+                    transform: 'translateY(1px)',
+                    borderBottom: '2px solid #EAB200',
                     bgcolor: '#fff',
                   },
                 }}
@@ -91,6 +102,7 @@ const BottomHeader = () => {
                 {page}
               </Button>
             ))}
+            <SearchIcon sx={{ cursor: 'pointer', color: '#000' }} />
           </Box>
         </Toolbar>
       </Container>

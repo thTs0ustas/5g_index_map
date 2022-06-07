@@ -1,5 +1,5 @@
 const styles = {
-  container: { bgcolor: '#EAB200', height: '68px', display: 'flex', alignItems: 'center', justifyContent: 'center' },
+  container: { bgcolor: '#EAB200', height: '64px', display: 'flex', alignItems: 'center', justifyContent: 'center' },
   box: (w1200, w992) => ({
     display: 'flex',
     justifyContent: 'space-between',

@@ -13,6 +13,7 @@ const footerStyles = {
   },
   gridList: { display: 'flex', justifyContent: 'end' },
   listItem: {
+    justifyContent: 'end',
     minWidth: '35px',
     width: 'auto',
     cursor: 'pointer',

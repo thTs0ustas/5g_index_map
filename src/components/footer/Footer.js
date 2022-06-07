@@ -19,7 +19,7 @@ const Footer = () => {
   const w1200 = useMediaQuery('(min-width:1200px)');
   const w990 = useMediaQuery('(min-width:990px)');
   return (
-    <Box sx={footerStyles.outerBox}>
+    <Box as={'footer'} sx={footerStyles.outerBox}>
       <Container fluid sx={{ padding: '40px 15px 0 15px', margin: '0 auto 50px' }}>
         <Grid container>
           <Grid container item sm={12} sx={footerStyles.gridContainer}>
