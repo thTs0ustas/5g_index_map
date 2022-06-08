@@ -1,5 +1,6 @@
 const footerStyles = {
   outerBox: { bgcolor: '#EEE' },
+  container: { width: '77%', padding: '40px 30px', margin: '0 auto' },
   gridContainer: { position: 'relative', marginBottom: '30px' },
   line: {
     margin: '0 auto',
@@ -22,6 +23,8 @@ const footerStyles = {
       color: '#EAB200',
     },
   },
+  listItemText: { textAlign: 'right', padding: 0 },
+  listItemWithIcon: { width: 'max-content', flex: '0 0 auto' },
   imageListItem: (big, small) => ({ width: big ? '185px' : !small ? '175px' : '151px' }),
 
   bottomBox: { bgcolor: '#333', height: 66, display: 'flex', alignItems: 'center', justifyContent: 'center' },

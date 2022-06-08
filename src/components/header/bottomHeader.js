@@ -1,23 +1,48 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import {
   AppBar,
   Box,
   Button,
   Collapse,
-  Container,
   Divider,
   IconButton,
-  // Menu,
+  Menu,
   MenuItem,
   styled,
   Toolbar,
   Typography,
-  // useMediaQuery,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
+import { isEmpty } from 'lodash';
+import { headerStyles } from './headerStyles';
 
-const pages = ['ABOUT', 'PRODUCTS & SERVICES', 'PROGNOSIS', 'NEWS', 'KNOWLEDGE CENTER', 'CONTACT'];
+const pages = [
+  {
+    name: 'ABOUT',
+    more: ['our story', 'missions and values', 'our customers', 'project and studies', 'meet our people', 'join us'],
+  },
+  {
+    name: 'PRODUCTS & SERVICES',
+    more: ['consulting', 'data ', 'research', 'h2020', 'Europe 5G Readiness Index', 'ten webapp'],
+  },
+  {
+    name: 'PROGNOSIS',
+    more: [],
+  },
+  {
+    name: 'NEWS',
+    more: ['newsroom', 'newsletter'],
+  },
+  {
+    name: 'KNOWLEDGE CENTER',
+    more: [],
+  },
+  {
+    name: 'CONTACT',
+    more: [],
+  },
+];
 
 const ExpandMore = styled((props) => {
   // const { expand, ...other } = props;
@@ -33,83 +58,91 @@ const ExpandMore = styled((props) => {
 }));
 
 const BottomHeader = () => {
-  // const w1200 = useMediaQuery('(min-width:1200px)');
-  // const w992 = useMediaQuery('(min-width:992px)');
   const [expanded, setExpanded] = React.useState(false);
+  const [move, setMove] = React.useState(false);
+
+  const handleMove = () => setMove(window.scrollY > 0);
+  // useEffect for scroll
+  React.useEffect(() => {
+    window.addEventListener('scroll', handleMove);
+    return () => {
+      window.removeEventListener('scroll', handleMove);
+    };
+  });
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
 
-  return (
-    <AppBar position="static" sx={{ bgcolor: '#fff', boxShadow: 'none' }}>
-      <Container>
-        <Toolbar disableGutters sx={{ justifyContent: 'space-between', alignItems: { xs: 'start', md: 'center' } }}>
-          <Box as="img" src={'INCITES_SA_logo.png'} sx={{ width: 175, margin: '15px 0' }} />
+  const [anchorElUser, setAnchorElUser] = React.useState(null);
 
-          <Box sx={{ justifyContent: 'flex-end', margin: '15px 0', display: { xs: 'flex', md: 'none' } }}>
+  const handleOpenUserMenu = (event) => {
+    console.log(event.currentTarget);
+    setAnchorElUser(event.currentTarget);
+  };
+
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
+
+  return (
+    <AppBar sx={headerStyles.appBar(move)}>
+      <Box sx={headerStyles.bHeaderContainer}>
+        <Toolbar disableGutters sx={headerStyles.toolbar}>
+          <Box as="img" src={move ? 'Logo_incites_sticky.png' : 'INCITES_SA_logo.png'} sx={headerStyles.img(move)} />
+
+          <Box sx={headerStyles.expandMore}>
             <ExpandMore expand={expanded} onClick={handleExpandClick} aria-expanded={expanded} aria-label="show more">
               <MenuIcon fontSize="16px" />
             </ExpandMore>
           </Box>
 
-          <Box
-            sx={{
-              flexGrow: 1,
-              justifyContent: 'end',
-              alignItems: 'center',
-              display: { xs: 'none', md: 'flex' },
-              width: { md: '70%', lg: '80%' },
-            }}
-          >
+          <Box sx={headerStyles.menu}>
             {pages.map((page) => (
-              <Button
-                key={page}
-                // onClick={handleCloseNavMenu}
-                sx={{
-                  color: '#333',
-                  display: 'block',
-                  borderRadius: 0,
-                  boxSizing: 'content-box',
-                  fontSize: { md: '13px', lg: '16px' },
-                  '&:hover': {
-                    transform: 'translateY(1px)',
-                    borderBottom: '2px solid #EAB200',
-                    bgcolor: '#fff',
-                  },
-                }}
-              >
-                {page}
-              </Button>
+              <Box key={page.name}>
+                <Button onMouseEnter={handleOpenUserMenu} id={page.name} sx={headerStyles.menuButton}>
+                  {page.name}
+                </Button>
+                {!isEmpty(page.more) && (
+                  <Menu
+                    id={`${page.name}-more`}
+                    sx={headerStyles.menuDropdown}
+                    anchorEl={anchorElUser}
+                    anchorOrigin={{
+                      vertical: 'top',
+                      horizontal: 'right',
+                    }}
+                    transformOrigin={{
+                      vertical: 'top',
+                      horizontal: 'right',
+                    }}
+                    keepMounted
+                    open={Boolean(anchorElUser?.id === page.name)}
+                    onClose={handleCloseUserMenu}
+                  >
+                    <Box onMouseLeave={handleCloseUserMenu}>
+                      {page.more.map((setting) => (
+                        <MenuItem key={setting} onClick={handleCloseUserMenu} sx={headerStyles.menuItem}>
+                          <Typography textAlign="center">{setting.toUpperCase()}</Typography>
+                        </MenuItem>
+                      ))}
+                    </Box>
+                  </Menu>
+                )}
+              </Box>
             ))}
-            <SearchIcon sx={{ cursor: 'pointer', color: '#000' }} />
+            <SearchIcon sx={headerStyles.search} />
           </Box>
         </Toolbar>
-      </Container>
-      <Collapse
-        in={expanded}
-        timeout="auto"
-        unmountOnExit
-        sx={{
-          margin: '0 auto',
-          width: '95%',
-          color: '#666',
-          bgcolor: '#1b1a1a',
-          fontWeight: 600,
-          '& .MuiTypography-root': {},
-          fontSize: '16px',
-        }}
-      >
+      </Box>
+      <Collapse in={expanded} timeout="auto" unmountOnExit sx={headerStyles.collapse}>
         {pages.map((page) => (
-          <>
-            {page === 'PROGNOSIS' && <Divider variant="middle" sx={{ bgcolor: '#EAB200' }} />}
-            <MenuItem
-              key={page}
-              // onClick={handleCloseNavMenu}
-            >
-              <Typography textAlign="center">{page}</Typography>
+          <Fragment key={page.name}>
+            {page.name === 'PROGNOSIS' && <Divider variant="middle" sx={{ bgcolor: '#EAB200' }} />}
+            <MenuItem key={page.name}>
+              <Typography textAlign="center">{page.name}</Typography>
             </MenuItem>
-          </>
+          </Fragment>
         ))}
       </Collapse>
     </AppBar>

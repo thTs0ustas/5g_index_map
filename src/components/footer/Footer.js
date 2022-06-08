@@ -1,6 +1,5 @@
 import {
   Box,
-  Container,
   Grid,
   ImageListItem,
   List,
@@ -20,7 +19,7 @@ const Footer = () => {
   const w990 = useMediaQuery('(min-width:990px)');
   return (
     <Box as={'footer'} sx={footerStyles.outerBox}>
-      <Container sx={{ width: '77%', padding: '40px 30px', margin: '0 auto' }}>
+      <Box sx={footerStyles.container}>
         <Grid container>
           <Grid container item sm={12} sx={footerStyles.gridContainer}>
             <Box sx={footerStyles.line} />
@@ -55,28 +54,28 @@ const Footer = () => {
               Contact information:
             </Typography>
             <List>
-              <ListItem dense disablePadding sx={{ textAlign: 'right' }}>
+              <ListItem dense disablePadding sx={footerStyles.listItemText}>
                 <ListItemText primary="130, Route d’ Arlon" />
               </ListItem>
-              <ListItem dense disablePadding sx={{ textAlign: 'right', padding: 0 }}>
+              <ListItem dense disablePadding sx={footerStyles.listItemText}>
                 <ListItemText primary="L-8008, Strassen - Luxembourg" />
               </ListItem>
               <ListItem dense disablePadding sx={footerStyles.listItem}>
                 <ListItemIcon sx={footerStyles.listItem}>
                   <PhoneAndroidIcon />
                 </ListItemIcon>
-                <ListItemText primary="Tel: (+352) 27 44 96 68" sx={{ width: 'max-content', flex: '0 0 auto' }} />
+                <ListItemText primary="Tel: (+352) 27 44 96 68" sx={footerStyles.listItemWithIcon} />
               </ListItem>
               <ListItem dense disablePadding sx={footerStyles.listItem}>
                 <ListItemIcon sx={footerStyles.listItem}>
                   <PhoneAndroidIcon />
                 </ListItemIcon>
-                <ListItemText sx={{ width: 'max-content', flex: '0 0 auto' }} primary="Tel: (+352) 20 60 12 66" />
+                <ListItemText sx={footerStyles.listItemWithIcon} primary="Tel: (+352) 20 60 12 66" />
               </ListItem>
             </List>
           </Grid>
         </Grid>
-      </Container>
+      </Box>
       <Box sx={footerStyles.bottomBox}>
         <Box sx={footerStyles.adjustBox}>
           <Typography component="span" color="#777777">
