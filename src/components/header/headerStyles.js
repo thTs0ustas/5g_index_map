@@ -3,7 +3,6 @@ const headerStyles = {
   box: {
     display: 'flex',
     justifyContent: 'space-between',
-    padding: '0 15px',
     width: '77%',
   },
   button: {
@@ -24,6 +23,7 @@ const headerStyles = {
     },
   },
   appBar: (move) => ({
+    padding: 0,
     position: { xs: 'static', md: move ? 'fixed' : 'static' },
     bgcolor: '#fff',
     boxShadow: move ? '1px 1px 10px #000' : 'none',
@@ -31,8 +31,19 @@ const headerStyles = {
   bHeaderContainer: { width: '77%', margin: '0 auto' },
   toolbar: { justifyContent: 'space-between', alignItems: { xs: 'start', md: 'center' } },
   img: (move) => ({ width: move ? 120 : 175, margin: '15px 0' }),
-  expandMore: { justifyContent: 'flex-end', margin: '15px 0', display: { xs: 'flex', md: 'none' } },
-  menuDropdown: { mt: '40px', '& .MuiMenu-list': { padding: 0, borderRadius: 0 } },
+  expandMore: {
+    justifyContent: 'flex-end',
+    width: 0,
+    height: 0,
+    margin: '15px 0',
+    display: { xs: 'flex', md: 'none' },
+  },
+  menuDropdown: {
+    borderRadius: 0,
+    mt: '60px',
+    '& .MuiBackdrop-root': { width: 0, height: 0 },
+    '& .MuiMenu-list': { padding: 0, borderRadius: 0 },
+  },
   menu: {
     flexGrow: 1,
     justifyContent: 'end',

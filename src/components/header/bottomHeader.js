@@ -97,14 +97,15 @@ const BottomHeader = () => {
             </ExpandMore>
           </Box>
 
-          <Box sx={headerStyles.menu}>
+          <Box sx={headerStyles.menu} onMouseLeave={handleCloseUserMenu}>
             {pages.map((page) => (
-              <Box key={page.name}>
+              <Box key={page.name} sx={{ zIndex: anchorElUser && 100000 }} onClick={handleCloseUserMenu}>
                 <Button onMouseEnter={handleOpenUserMenu} id={page.name} sx={headerStyles.menuButton}>
                   {page.name}
                 </Button>
                 {!isEmpty(page.more) && (
                   <Menu
+                    onMouseLeave={handleCloseUserMenu}
                     id={`${page.name}-more`}
                     sx={headerStyles.menuDropdown}
                     anchorEl={anchorElUser}
