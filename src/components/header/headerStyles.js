@@ -75,7 +75,6 @@ const headerStyles = {
     bgcolor: '#1b1a1a',
     fontWeight: 600,
     '& .MuiTypography-root': {},
-
     fontSize: '16px',
   },
   menuButton: {
@@ -83,11 +82,24 @@ const headerStyles = {
     display: 'block',
     borderRadius: 0,
     boxSizing: 'content-box',
-    fontSize: { md: '13px', lg: '16px' },
+    fontSize: { sm: '12px', md: '13px', lg: '14px' },
     '&:hover': {
       transform: 'translateY(1px)',
       borderBottom: '2px solid #EAB200',
       bgcolor: '#fff',
+    },
+  },
+  menuButton2: {
+    color: '#666',
+    borderRadius: 0,
+    height: '48px',
+    textAlign: 'left',
+    padding: '0px 2rem',
+    '& .MuiTypography-root': {
+      FontFace: 'Open Sans, sans-serif',
+      fontSize: '16px',
+      fontWeight: 400,
+      color: '#666',
     },
   },
 };

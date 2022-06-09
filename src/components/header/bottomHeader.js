@@ -5,69 +5,48 @@ import {
   Button,
   Collapse,
   Divider,
-  IconButton,
   Menu,
   MenuItem,
-  styled,
   Toolbar,
   Typography,
+  useMediaQuery,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import { isEmpty } from 'lodash';
 import { headerStyles } from './headerStyles';
-
-const pages = [
-  {
-    name: 'ABOUT',
-    more: ['our story', 'missions and values', 'our customers', 'project and studies', 'meet our people', 'join us'],
-  },
-  {
-    name: 'PRODUCTS & SERVICES',
-    more: ['consulting', 'data ', 'research', 'h2020', 'Europe 5G Readiness Index', 'ten webapp'],
-  },
-  {
-    name: 'PROGNOSIS',
-    more: [],
-  },
-  {
-    name: 'NEWS',
-    more: ['newsroom', 'newsletter'],
-  },
-  {
-    name: 'KNOWLEDGE CENTER',
-    more: [],
-  },
-  {
-    name: 'CONTACT',
-    more: [],
-  },
-];
-
-const ExpandMore = styled((props) => {
-  // const { expand, ...other } = props;
-  return <IconButton {...props} />;
-})(({ theme, expand }) => ({
-  color: '#21215D',
-  fontSize: '2rem',
-  transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
-  marginLeft: 'auto',
-  transition: theme.transitions.create('transform', {
-    duration: theme.transitions.duration.shortest,
-  }),
-}));
+import { Accordion, AccordionSummary, AccordionDetails } from './accordions/headerAccordions';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { pages } from './PAGES';
+import { ExpandMore } from './ExpandMore';
 
 const BottomHeader = () => {
   const [expanded, setExpanded] = React.useState(false);
   const [move, setMove] = React.useState(false);
+  const [panelExpanded, setPanelExpanded] = React.useState(false);
+
+  const width900 = useMediaQuery('(min-width: 900px)');
+
+  const handleChange = (panel) => (event, newExpanded) => {
+    setPanelExpanded(newExpanded ? panel : false);
+  };
 
   const handleMove = () => setMove(window.scrollY > 0);
   // useEffect for scroll
   React.useEffect(() => {
     window.addEventListener('scroll', handleMove);
+
     return () => {
       window.removeEventListener('scroll', handleMove);
     };
+  });
+
+  React.useEffect(() => {
+    console.log(width900);
+    if (width900 && (panelExpanded || expanded)) {
+      setExpanded(false);
+      setPanelExpanded('');
+    }
   });
 
   const handleExpandClick = () => {
@@ -77,7 +56,6 @@ const BottomHeader = () => {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
   const handleOpenUserMenu = (event) => {
-    console.log(event.currentTarget);
     setAnchorElUser(event.currentTarget);
   };
 
@@ -140,9 +118,28 @@ const BottomHeader = () => {
         {pages.map((page) => (
           <Fragment key={page.name}>
             {page.name === 'PROGNOSIS' && <Divider variant="middle" sx={{ bgcolor: '#EAB200' }} />}
-            <MenuItem key={page.name}>
-              <Typography textAlign="center">{page.name}</Typography>
-            </MenuItem>
+            {isEmpty(page.more) ? (
+              <MenuItem key={page.name} sx={headerStyles.menuButton2}>
+                <Typography textAlign="center">{page.name}</Typography>
+              </MenuItem>
+            ) : (
+              <Accordion key={page.name} expanded={panelExpanded === page.name} onChange={handleChange(page.name)}>
+                <AccordionSummary
+                  expandIcon={<ExpandMoreIcon />}
+                  aria-controls={`${page.name}-content`}
+                  id={`${page.name}-header`}
+                >
+                  <Typography textAlign="center">{page.name}</Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                  {page.more.map((setting) => (
+                    <MenuItem key={setting}>
+                      <Typography textAlign="center">{setting.toUpperCase()}</Typography>
+                    </MenuItem>
+                  ))}
+                </AccordionDetails>
+              </Accordion>
+            )}
           </Fragment>
         ))}
       </Collapse>
