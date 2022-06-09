@@ -1,6 +1,6 @@
 const mainStyles = {
   container: { bgcolor: '#EEE', paddingBottom: { xs: '7px', md: 0 }, '& + .MuiList-root': { padding: 0 } },
-  outerBox: { width: '77%', margin: '0 auto' },
+  outerBox: { width: '77%', margin: '0 auto 10px' },
   listHeader: { bgcolor: '#eab200', padding: '16px', color: '#fff', marginTop: '1em' },
   listItem: {
     bgcolor: '#f8f8f8',
@@ -36,6 +36,8 @@ const mainStyles = {
     justifyContent: 'space-between',
     alignItems: 'start',
     paddingTop: 0,
+    paddingBottom: 0,
+    paddingLeft: '0px',
   },
   gridItemText: {
     '& .MuiTypography-root': {

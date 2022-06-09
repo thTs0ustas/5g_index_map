@@ -14,7 +14,7 @@ import {
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import { isEmpty } from 'lodash';
-import { headerStyles } from './headerStyles';
+import { headerStyles } from './HeaderStyles';
 import { Accordion, AccordionSummary, AccordionDetails } from './accordions/headerAccordions';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { pages } from './PAGES';

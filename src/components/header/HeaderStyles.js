@@ -3,7 +3,7 @@ const headerStyles = {
   box: {
     display: 'flex',
     justifyContent: 'space-between',
-    width: '77%',
+    width: { xs: '87%', sm: '77%' },
   },
   button: {
     width: '150px',
@@ -23,12 +23,13 @@ const headerStyles = {
     },
   },
   appBar: (move) => ({
+    width: '100%',
     padding: 0,
     position: { xs: 'static', md: move ? 'fixed' : 'static' },
     bgcolor: '#fff',
     boxShadow: move ? '1px 1px 10px #000' : 'none',
   }),
-  bHeaderContainer: { width: '77%', margin: '0 auto' },
+  bHeaderContainer: { width: { xs: '87%', sm: '77%' }, margin: '0 auto' },
   toolbar: { justifyContent: 'space-between', alignItems: { xs: 'start', md: 'center' } },
   img: (move) => ({ width: move ? 120 : 175, margin: '15px 0' }),
   expandMore: {

@@ -10,7 +10,7 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import PersonSharpIcon from '@mui/icons-material/PersonSharp';
-import { headerStyles } from './headerStyles';
+import { headerStyles } from './HeaderStyles';
 
 const UpperHeader = ({ show }) => {
   // const w1200 = useMediaQuery('(min-width:1200px)');
