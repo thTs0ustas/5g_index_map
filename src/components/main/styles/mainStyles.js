@@ -1,5 +1,5 @@
 const mainStyles = {
-  container: { bgcolor: '#EEE', paddingBottom: { sm: '7px' } },
+  container: { bgcolor: '#EEE', paddingBottom: { xs: '7px', md: 0 }, '& + .MuiList-root': { padding: 0 } },
   outerBox: { width: '77%', margin: '0 auto' },
   listHeader: { bgcolor: '#eab200', padding: '16px', color: '#fff', marginTop: '1em' },
   listItem: {
@@ -25,6 +25,11 @@ const mainStyles = {
     borderRadius: '0 0 10px 10px',
     fontSize: '12px',
     fontWeight: 300,
+    cursor: 'pointer',
+    '&:hover': {
+      backgroundColor: '#eab200',
+      color: '#fff',
+    },
   },
   gridContainer: {
     display: 'flex',
@@ -64,12 +69,30 @@ const mainStyles = {
     bgcolor: '#eee',
     '& .MuiSelect-select': {
       bgcolor: '#eee',
+      fontSize: '18px',
+      fontWeight: 400,
       borderBottom: 'none',
       padding: '8px 12px 25px',
     },
     '&:before': { borderBottom: 'none' },
     '&:hover': { borderBottom: 'none', bgcolor: '#eee' },
     '&:after': { borderBottom: 'none' },
+  },
+  menuItem: {
+    fontSize: '14px',
+    fontWeight: 600,
+    '& ~ .MuiList-root': {
+      padding: 0,
+      margin: 0,
+    },
+    '&:hover': {
+      backgroundColor: '#eab200',
+      color: '#fff',
+    },
+  },
+  menuListItem: {
+    marginLeft: '20px',
+    borderLeft: '1px solid #f2f2f2',
   },
   mainBarButton: {
     bgcolor: '#fff',
@@ -78,8 +101,16 @@ const mainStyles = {
     boxSizing: 'border-box',
     padding: '6px 12px',
     height: '34px',
+    lineHeight: '34px',
     width: { xs: '100%', md: '126px', lg: '134px' },
     '&:hover': { bgcolor: '#e6e6e6', color: '#333', border: '1px solid #777' },
+    '& .MuiButton-startIcon': {
+      marginRight: '2px',
+      color: '#eab200',
+    },
+    '& .MuiButton-startIcon>*:nth-of-type(1)': {
+      fontSize: '16px',
+    },
   },
   mainBarSwitch: {
     marginTop: { xs: '7px', md: 0 },
@@ -91,7 +122,8 @@ const mainStyles = {
     flexDirection: 'column',
   },
   mainBarGridItem: { display: 'flex', justifyContent: 'center' },
-  mainBarGridItemText: { color: '#EAB200', textAlign: 'center', cusor: 'pointer' },
+
+  mainBarGridItemText: { color: '#EAB200', textAlign: 'center', cursor: 'pointer' },
   formControl: { width: '100%' },
   modalContainer: {
     position: 'absolute',
