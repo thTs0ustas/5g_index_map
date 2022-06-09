@@ -4,3 +4,4 @@ export { Footer } from './footer/Footer';
 export { UpperHeader } from './header/upperHeader';
 export { BottomHeader } from './header/bottomHeader';
 export { Main } from './main/Main';
+export { SideButtons } from './sideButtons/SideButtons';

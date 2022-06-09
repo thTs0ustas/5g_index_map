@@ -1,5 +1,5 @@
 import { Box, createTheme, ThemeProvider } from '@mui/material';
-import { BottomHeader, Footer, Index5g, Main, MainBar, UpperHeader } from './components';
+import { BottomHeader, Footer, Index5g, Main, MainBar, SideButtons, UpperHeader } from './components';
 import RalewayWoff2 from './theme/Raleway-VariableFont_wght.ttf';
 
 const theme = createTheme({
@@ -27,6 +27,7 @@ const theme = createTheme({
 function App() {
   return (
     <ThemeProvider theme={theme}>
+      <SideButtons />
       <Box as="header">
         <UpperHeader show={true} />
         <BottomHeader />

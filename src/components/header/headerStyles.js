@@ -75,6 +75,7 @@ const headerStyles = {
     bgcolor: '#1b1a1a',
     fontWeight: 600,
     '& .MuiTypography-root': {},
+
     fontSize: '16px',
   },
   menuButton: {
